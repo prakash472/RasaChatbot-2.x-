@@ -1,0 +1,49 @@
+version: "2.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+# Since while using the form we do not need to specify each step. If not used forms, can be used as below
+# - story: tell name path
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - action: utter_applicant_name
+#   - intent: name_entry
+#     entities:
+#     - name: "Prakash"
+#   - slot_was_set:
+#       - name: "Prakash"
+#   - action: utter_applicant_position
+#   - intent: position_entry
+#     entities:
+#     - position: "ML"
+#   - slot_was_set:
+#       - position: "ML"
+#   - action: utter_thankyou 

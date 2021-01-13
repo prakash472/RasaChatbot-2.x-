@@ -1,0 +1,105 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - out_of_scope
+  - apply
+  - chitchat
+  - name_entry:
+      use_entities:
+        - name
+  - position_entry:
+      use_entities:
+        - position
+  - experience_entry:
+      use_entities:
+        - experience
+
+  # - role_entry:
+  #     use_entities:
+  #       - role
+
+entities:
+  - name
+  - position
+  - experience
+  # - role
+slots:
+  name:
+    type: text
+  position:
+    type: text
+  experience:
+    type: text
+
+actions:
+  - action_submit
+forms:
+  applicant_detail_form:
+    name:
+      - type: from_entity
+        entity: name
+    position:
+      - type: from_entity
+        entity: position
+    experience:
+      - type: from_entity
+        entity: experience
+
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+  utter_home_dialogue:
+  - text: "Welcome to Human Resource Department."
+
+# Using a form it should start with utter_ask_slotname if not using custom action
+  utter_ask_name:
+  - text: "What is your name?"
+
+  utter_ask_position:
+  - text: "What position are you seeking for?"
+
+  utter_ask_experience:
+  - text: "How many years of experience do you have?"
+
+  utter_thankyou:
+  - text: "Thank you for providing the details"
+ 
+  utter_details_thanks:
+    - text: "Thanks for providing the given details \nName: {Name},\nPostion: {Position},\nExperience: {Experience}"
+
+  utter_out_of_scope:
+    - text: Sorry, I didn't get what you said. Please rephrase what you said.
+  
+  utter_chitchat/ask_work_environment:
+    - text: "It is very good. They treat employees nicely and do not presurize them."
+  
+  utter_chitchat/ask_location:
+    - text: "It is located in kathmandu valley."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
